@@ -1,9 +1,12 @@
-import './styles.css';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRouter } from './router/AppRouter';
 
 export const SuraApp = () => {
   return (
-    <>
-      <h1>Sura App</h1>
-    </>
+
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+
   );
 };
