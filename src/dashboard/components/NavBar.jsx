@@ -1,11 +1,19 @@
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../../store/auth/authSlice';
 
 function NavBar() {
+  const dispatch = useDispatch();
+
+  const cerrarSesion = () => {
+    dispatch(logout());
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -21,7 +29,7 @@ function NavBar() {
               Pendientes Por Condición
             </Nav.Link>
 
-            <Nav.Link href="#pricing">Emisiones Figitivas</Nav.Link>
+            <Nav.Link href="#pricing">Emisiones Fugitivas</Nav.Link>
 
             <Nav.Link href="#pricing">Equipos Principales</Nav.Link>
 
@@ -39,8 +47,12 @@ function NavBar() {
             </NavDropdown> */}
           </Nav>
           <Nav className="d-flex align-items-end align-items-lg-center">
-            <span className="text-info me-3 sm">Tommy López</span>
-            <Button variant={'outline-primary'} className="mt-1 mt-lg-0">
+            <span className="text-info me-0 me-lg-3 sm">Tommy López</span>
+            <Button
+              onClick={cerrarSesion}
+              variant={'outline-primary'}
+              className="mt-2 mt-lg-0"
+            >
               Salir
             </Button>
           </Nav>
