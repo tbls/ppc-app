@@ -1,9 +1,9 @@
-import NavBar from '../components/NavBar';
+import { NavBar } from '../components/NavBar';
 
 export const DashboardPage = () => {
-  return (
-    <>
-      <NavBar />
-    </>
-  );
+	return (
+		<>
+			<h1>DashboardPage</h1>
+		</>
+	);
 };

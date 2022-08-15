@@ -2,20 +2,22 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthRouter } from '../auth/routes/AuthRouter';
-import { DashboardPage } from '../dashboard/pages';
+import { DashboardRouter } from '../dashboard/routes/DashboardRouter';
 
 export const AppRouter = () => {
-  const { isLogged } = useSelector((state) => state.auth);
-  console.log(isLogged);
-  return (
-    <Routes>
-      {isLogged ? (
-        <Route path="/*" element={<DashboardPage />} />
-      ) : (
-        <Route path="auth/*" element={<AuthRouter />} />
-      )}
+	const { isLogged } = useSelector((state) => state.auth);
+	
+	return (
+		<Routes>
 
-      <Route path="/*" element={<Navigate to="/auth/login" />} />
-    </Routes>
-  );
+			{
+				isLogged 
+				? <Route path="/*" element={<DashboardRouter />} />
+				: <Route path="auth/*" element={<AuthRouter />} />
+			}
+
+			<Route path="/*" element={<Navigate to="/auth/login" />} />
+
+		</Routes>
+	);
 };
