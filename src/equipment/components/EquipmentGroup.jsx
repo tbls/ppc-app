@@ -1,14 +1,16 @@
 import { EquipmentItem } from './EquipmentItem';
 
-export const EquipmentGroup = () => {
+export const EquipmentGroup = ({ groupTitle }) => {
   const equipos = [1, 2, 3, 4, 5];
 
   return (
-    <>
-      <h1 className="my-3 text-center">Grupo de Equipos</h1>
-      {equipos.map((equipo) => {
-        return <EquipmentItem />;
-      })}
-    </>
+    <div>
+      <h4 className="my-3">{groupTitle}</h4>
+      <div className="row">
+        {equipos.map((equipo) => {
+          return <EquipmentItem />;
+        })}
+      </div>
+    </div>
   );
 };
