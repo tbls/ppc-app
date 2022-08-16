@@ -25,15 +25,15 @@ export const NavBar = () => {
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/pendings">
+            <Nav.Link eventKey="1" as={Link} to="/pendings">
               Pendientes Por Condición
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/leaks">
+            <Nav.Link eventKey="2" as={Link} to="/leaks">
               Emisiones Fugitivas
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/equipments">
+            <Nav.Link eventKey="3" as={Link} to="/equipments">
               Equipos Principales
             </Nav.Link>
 
