@@ -7,34 +7,37 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../../store/auth/authSlice';
 
-export const NavBar =() => {
-	const dispatch = useDispatch();
+export const NavBar = () => {
+  const dispatch = useDispatch();
 
-	const cerrarSesion = () => {
-		dispatch(logout());
-	};
+  const cerrarSesion = () => {
+    dispatch(logout());
+  };
 
-	return (
-		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-			<Container>
-				<Navbar.Brand as={Link} to="/">
-					PPC
-				</Navbar.Brand>
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand as={Link} to="/">
+          PPC
+        </Navbar.Brand>
 
-				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-				<Navbar.Collapse id="responsive-navbar-nav">
-					<Nav className="me-auto">
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/pendings">
+              Pendientes Por Condición
+            </Nav.Link>
 
-						<Nav.Link as={Link} to="/pendings">
-							Pendientes Por Condición
-						</Nav.Link>
+            <Nav.Link as={Link} to="/leaks">
+              Emisiones Fugitivas
+            </Nav.Link>
 
-						<Nav.Link href="#pricing">Emisiones Fugitivas</Nav.Link>
+            <Nav.Link as={Link} to="/equipments">
+              Equipos Principales
+            </Nav.Link>
 
-						<Nav.Link href="#pricing">Equipos Principales</Nav.Link>
-
-						{/* <NavDropdown
+            {/* <NavDropdown
 							title="Pendientes Por Condición"
 							id="collasible-nav-dropdown"
 						>
@@ -46,19 +49,19 @@ export const NavBar =() => {
 								Separated link
 							</NavDropdown.Item>
 						</NavDropdown> */}
-					</Nav>
-					<Nav className="d-flex align-items-end align-items-lg-center">
-						<span className="text-info me-0 me-lg-3 sm">Tommy López</span>
-						<Button
-							onClick={ cerrarSesion }
-							variant={ 'outline-primary' }
-							className="mt-2 mt-lg-0"
-						>
-							Salir
-						</Button>
-					</Nav>
-				</Navbar.Collapse>
-			</Container>
-		</Navbar>
-	);
-}
+          </Nav>
+          <Nav className="d-flex align-items-end align-items-lg-center">
+            <span className="text-info me-0 me-lg-3 sm">Tommy López</span>
+            <Button
+              onClick={cerrarSesion}
+              variant={'outline-primary'}
+              className="mt-2 mt-lg-0"
+            >
+              Salir
+            </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};

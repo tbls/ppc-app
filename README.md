@@ -1,3 +1,3 @@
-# vitejs-vite-wsm8mx
+# SuraApp
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/sura-app)
