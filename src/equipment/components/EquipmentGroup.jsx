@@ -3,7 +3,6 @@ import { EquipmentItem } from './EquipmentItem';
 export const EquipmentGroup = ({ grupoDeEquipos = [] }) => {
   // console.log(grupoDeEquipos.List);
   const { List } = grupoDeEquipos;
-  console.log(List);
 
   return (
     <div>
