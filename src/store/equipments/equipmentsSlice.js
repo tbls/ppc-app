@@ -10,7 +10,7 @@ export const equipmentsSlice = createSlice({
         Name: 'Bombas de Hot Oil',
         List: [
           {
-            tag: 'PAY-58100',
+            tag: 'PAY-5810',
             condition: 'Operativo',
             state: 'E/S',
           },
