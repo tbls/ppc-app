@@ -1,23 +1,15 @@
 import { EquipmentItem } from './EquipmentItem';
 
-export const EquipmentGroup = ({ equipmentGroup }) => {
-
-  console.log(equipmentGroup)
-
+export const EquipmentGroup = ({ grupoDeEquipos = [] }) => {
+  console.log(grupoDeEquipos.List);
+  const { List } = grupoDeEquipos;
   return (
     <div>
-      <h4 className="my-3">Nombre</h4>
+      <h4 className="my-3">{grupoDeEquipos.Name}</h4>
       <div className="row">
-        {/* {
-          equipmentGroup.map((equipo , index) => {
-            return (
-            <EquipmentItem
-              key={ index }
-              equipo={ equipo }
-            />
-            );
-          })
-        } */}
+        {List.map((equipo, index) => {
+          return <EquipmentItem key={index} />;
+        })}
       </div>
     </div>
   );
