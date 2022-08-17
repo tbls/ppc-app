@@ -5,7 +5,7 @@ import { showEquipmentModal } from '../../store/ui/uiSlice';
 
 export const EquipmentItem = ({ equipo }) => {
   const dispatch = useDispatch();
-  const { tag, condition, state } = equipo;
+  const { tag, condition, state, observation } = equipo;
 
   const mostarModalDeEquipos = () => {
     dispatch(setActiveEquipment(equipo));
@@ -17,8 +17,10 @@ export const EquipmentItem = ({ equipo }) => {
       <Card className="text-center">
         <Card.Header>{tag}</Card.Header>
         <Card.Body>
-          <Card.Title>{condition}</Card.Title>
-          <Card.Text>{state}</Card.Text>
+          <Card.Title>
+            {condition} - {state}
+          </Card.Title>
+          <Card.Text>{observation}</Card.Text>
           <Button onClick={mostarModalDeEquipos} variant="primary">
             Actualizar
           </Button>
