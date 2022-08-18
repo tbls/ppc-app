@@ -1,17 +1,23 @@
+import { Row } from 'react-bootstrap';
+
 import { EquipmentItem } from './EquipmentItem';
 
 export const EquipmentGroup = ({ grupoDeEquipos = [] }) => {
-  // console.log(grupoDeEquipos.List);
-  const { List } = grupoDeEquipos;
 
-  return (
-    <div>
-      <h4 className="my-3">{grupoDeEquipos.Name}</h4>
-      <div className="row">
-        {List.map((equipo, index) => {
-          return <EquipmentItem key={index} equipo={equipo} />;
-        })}
-      </div>
-    </div>
-  );
+	const { List } = grupoDeEquipos;
+
+	return (
+		<>
+			<h4 className="my-3">{grupoDeEquipos.Name}</h4>
+			
+			<Row xs={1} md={2} lg={3} className="g-2 mb-2">
+				{List.map((equipo, index) => (
+				<EquipmentItem key={index} equipo={equipo} />
+				))}
+			</Row>
+
+
+
+		</>
+	);
 };
