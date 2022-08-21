@@ -4,6 +4,11 @@ import Select from 'react-select';
 import { Button, Form, Modal } from 'react-bootstrap';
 
 import { hideEquipmentModal } from '../../store/ui/uiSlice';
+import {
+  removeActiveEquipment,
+  updateCondition,
+  updateState,
+} from '../../store/equipments/equipmentsSlice';
 
 export const EquipmentModal = () => {
   const { isEquipmentModalVisible } = useSelector((state) => state.ui);
@@ -11,13 +16,17 @@ export const EquipmentModal = () => {
   const dispatch = useDispatch();
 
   const conditionOptions = [
-    { value: 'Operativo', label: 'Operativo' },
+    { value: 'operativo', label: 'Operativo' },
     {
-      value: 'Operativo con observaciones',
+      value: 'operativoConObservaciones',
       label: 'Operativo con observaciones',
     },
-    { value: 'Inoperativo', label: 'Inoperativo' },
+    { value: 'inoperativo', label: 'Inoperativo' },
   ];
+
+  const onConditionChange = (value) => {
+    dispatch(updateCondition(value));
+  };
 
   const stateOptions = [
     { value: 'E/S', label: 'E/S' },
@@ -25,10 +34,15 @@ export const EquipmentModal = () => {
     { value: 'F/S', label: 'F/S' },
   ];
 
+  const onStateChange = (value) => {
+    dispatch(updateState(value));
+  };
+
   const ocultarModalDeEquipos = () => {
     dispatch(hideEquipmentModal());
+    dispatch(removeActiveEquipment());
   };
-  const { tag, condition, state } = activeEquipment;
+  const { tag, condition, state, observations = [] } = activeEquipment;
 
   return (
     <>
@@ -40,27 +54,55 @@ export const EquipmentModal = () => {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Condición</Form.Label>
-              <Select options={conditionOptions} />
+              <Select
+                className="text-center"
+                options={conditionOptions}
+                onChange={onConditionChange}
+                value={condition}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Estado</Form.Label>
-              <Select options={stateOptions} />
+              <Select
+                className="text-center"
+                options={stateOptions}
+                onChange={onStateChange}
+                value={state}
+              />
             </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Observación</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Label>Observaciones</Form.Label>
+              {observations.map((observation, index) => (
+                <div key={index} className="d-flex gap-1 mb-1">
+                  <Form.Control
+                    className="w-75 text-center"
+                    // as="textarea"
+                    type="input"
+                    rows={2}
+                    value={observation.description}
+                    readOnly
+                  />
+                  <Form.Control
+                    className="w-25 text-center"
+                    type="number"
+                    rows={3}
+                    value={observation.aviso}
+                    readOnly
+                  />
+                </div>
+              ))}
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={ocultarModalDeEquipos}>
-            Close
+            Cancelar
           </Button>
           <Button variant="primary" onClick={ocultarModalDeEquipos}>
-            Save Changes
+            Guardar
           </Button>
         </Modal.Footer>
       </Modal>
